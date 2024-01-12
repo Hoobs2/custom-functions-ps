@@ -4,16 +4,6 @@ Davey Hobbs
 Remediation Detection Script
 #>
 
-#Test ITS Log location and create folder location if it doesnt exist.
-function TestITSLog {
-    param ()
-
-    if (!(Test-Path "C:\itslog\Intune")) {
-        New-Item -ItemType Directory -Path "C:\itslog\Intune" -Force -ErrorAction SilentlyContinue > $null
-    }
-    
-}
-
 function Test-RegistryValue {
     param(
         [string]$regPath,
@@ -21,14 +11,13 @@ function Test-RegistryValue {
     )
 
     try {
-        $registryValue = Get-ItemPropertyValue -Path $regPath -Name $valueName -ErrorAction Stop
+        $registryValue = Get-ItemPropertyValue -Path $regPath -Name $valueName -ErrorAction SilentlyContinue
 
         if ($null -eq $registryValue) {
             $logMessage = "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss') - Registry value '$valueName' not found in path '$regPath'."
             Add-content -Path $logFilePath -Value $logMessage
             EXIT 0
         }
-
         if ($registryValue -eq 600) {
             $logMessage = "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss') - Registry key '$valueName' under '$regPath' was equle to 600."
             Add-content -Path $logFilePath -Value $logMessage
