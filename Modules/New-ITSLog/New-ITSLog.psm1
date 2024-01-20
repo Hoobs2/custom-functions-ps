@@ -1,5 +1,5 @@
 #Use to import in Script.
-#Import-Module .\Test-ITSLog\Test-ITSLog
+#Import-Module .\Modules\New-ITSLog\New-ITSLog
 function New-ITSLog {
     param (
         [string]$logPath
