@@ -1,0 +1,22 @@
+<Configuration>
+
+    <Variables>
+        <Log>
+            <LogPath>C:\itslog\Intune\AcrobatPro64\</LogPath>
+            <LogFileName>AcrobatPro64.txt</LogFileName>
+        </Log>
+
+    </Variables>
+
+    <Installs>
+    
+        <install>AdobeAcrobat\setup.exe</install>
+        <args>/sAll</args>
+
+    </Installs>
+
+    <Uninstall>
+
+    </Uninstall>
+
+</Configuration>
